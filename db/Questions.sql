@@ -4,6 +4,7 @@ CREATE TABLE [dbo].[Questions]
     [Title] VARCHAR(250) NOT NULL, 
     [Answer] VARCHAR(MAX) NOT NULL,
 	[OwnerUserID] INT NOT NULL,
+	[ShortName] VARCHAR(100) NOT NULL,
 	[Time] DATETIME NOT NULL DEFAULT GETDATE(),
 	[Views] INT NOT NULL DEFAULT 0
 )

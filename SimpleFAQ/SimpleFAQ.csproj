@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -49,6 +52,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -102,8 +108,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -120,6 +130,25 @@
     <Content Include="App_Data\simple-faq_log.ldf">
       <DependentUpon>simple-faq.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\css\modern-responsive.css" />
+    <Content Include="Content\css\modern.css" />
+    <Content Include="Content\css\theme-dark.css" />
+    <Content Include="Content\fonts\iconFont.svg" />
+    <Content Include="Content\fonts\license.txt" />
+    <Content Include="Content\images\preloader-w8-cycle-black.gif" />
+    <Content Include="Content\images\preloader-w8-cycle-white.gif" />
+    <Content Include="Content\images\preloader-w8-line-black.gif" />
+    <Content Include="Content\images\preloader-w8-line-white.gif" />
+    <Content Include="Content\javascript\accordion.js" />
+    <Content Include="Content\javascript\buttonset.js" />
+    <Content Include="Content\javascript\carousel.js" />
+    <Content Include="Content\javascript\dropdown.js" />
+    <Content Include="Content\javascript\input-control.js" />
+    <Content Include="Content\javascript\pagecontrol.js" />
+    <Content Include="Content\javascript\rating.js" />
+    <Content Include="Content\javascript\slider.js" />
+    <Content Include="Content\javascript\tile-drag.js" />
+    <Content Include="Content\javascript\tile-slider.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -131,7 +160,6 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Content\" />
     <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
@@ -141,10 +169,15 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_ViewStart.cshtml.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\fonts\iconFont.eot" />
+    <Content Include="Content\fonts\iconFont.ttf" />
+    <Content Include="Content\fonts\iconFont.woff" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
