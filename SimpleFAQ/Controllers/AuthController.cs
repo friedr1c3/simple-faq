@@ -6,6 +6,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using FluentValidation.Mvc;
 
 namespace SimpleFAQ.Controllers
 {
@@ -33,9 +34,41 @@ namespace SimpleFAQ.Controllers
 		/// </summary>
 		/// <returns></returns>
 		[HttpPost]
-		public ActionResult Login(FormCollection formCollection)
+		public ActionResult Login([CustomizeValidator(RuleSet = "Login")]User user)
 		{
-			return View();
+			if (this.ModelState.IsValid)
+			{
+				// Get information for the user by the specified username.
+				var dbUser = Current.DB.Query<User>("SELECT * FROM Users WHERE Username = @Username", new { user.Username }).FirstOrDefault();
+
+				if (dbUser != null)
+				{
+					// Encrypt password.
+					user.Password = Encryption.ComputerHash(user.Password, new SHA256CryptoServiceProvider(), Encoding.UTF8.GetBytes(dbUser.Salt));
+
+					// Compare passwords
+					if (user.Password != dbUser.Password)
+					{
+						this.ModelState.AddModelError("Username", "Incorrect username or password. Try again.");
+
+						return View(user);
+					}
+
+					//var ticket = new FormsAuthenticationTicket(1, dbUser.ID.ToString(), DateTime.Now, DateTime.Now.AddYears(1), true, null);
+
+					return GenericMessage("You have successfully logged in!", "/");
+				}
+
+				else
+				{
+					return View();
+				}
+			}
+
+			else
+			{
+				return View(user);
+			}
 		}
 
 		#endregion
@@ -71,12 +104,16 @@ namespace SimpleFAQ.Controllers
 		/// </summary>
 		/// <returns></returns>
 		[HttpPost]
-		public ActionResult Register(User user)
+		public ActionResult Register([CustomizeValidator(RuleSet = "Registration")]User user)
 		{
 			if (this.ModelState.IsValid)
 			{
 				user.Salt = Utilities.RandomString(10);
 				user.Password = Encryption.ComputerHash(user.Password, new SHA256CryptoServiceProvider(), Encoding.UTF8.GetBytes(user.Salt));
+				user.IPAddress = this.HttpContext.Request.UserHostAddress;
+
+				// Insert user into database.
+				Current.DB.Users.Insert(new { user.Username, user.Email, user.Password, user.Salt, user.IPAddress });
 
 				return GenericMessage("You have successfully registered!", "/");
 			}

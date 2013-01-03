@@ -47,6 +47,11 @@ namespace SimpleFAQ.Models
 		public string Email { get; set; }
 
 		/// <summary>
+		/// Gets or sets the IP address.
+		/// </summary>
+		public string IPAddress { get; set; }
+
+		/// <summary>
 		/// Gets or sets the is admin.
 		/// </summary>
 		public bool IsAdmin { get; set; }
@@ -55,6 +60,11 @@ namespace SimpleFAQ.Models
 		/// Gets or sets the registered date.
 		/// </summary>
 		public DateTime Registered { get; set; }
+
+		/// <summary>
+		/// Gets or sets the question count.
+		/// </summary>
+		public int Questions { get; set; }
 
 		/// <summary>
 		/// Gets or sets whether or not the current user is anonymous.

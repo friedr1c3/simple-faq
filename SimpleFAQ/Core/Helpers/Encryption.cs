@@ -13,7 +13,7 @@ namespace SimpleFAQ.Core.Helpers
 	public static class Encryption
 	{
 		/// <summary>
-		/// 
+		/// Computes a salted string using the specified hasing algorithm.
 		/// </summary>
 		/// <param name="input"></param>
 		/// <param name="algorithm"></param>

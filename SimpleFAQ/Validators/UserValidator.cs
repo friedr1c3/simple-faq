@@ -17,25 +17,43 @@ namespace SimpleFAQ.Validators
 
 		public UserValidator()
 		{
-			RuleFor(x => x.Username)
-				.NotNull()
-				.WithMessage("Please enter a user name.")
-				.Length(2, 50)
-				.WithMessage("Username must be between 2 and 50 characters.");
+			RuleSet("Registration", () =>
+			{
+				RuleFor(x => x.Username)
+					.NotNull()
+					.WithMessage("Please enter a user name.")
+					.Length(2, 50)
+					.WithMessage("Username must be between 2 and 50 characters.");
 
-			RuleFor(x => x.Password)
-				.NotNull()
-				.WithMessage("Please enter a password.")
-				.Length(4, 16)
-				.WithMessage("Password must be between 4 and 16 characters.");
+				RuleFor(x => x.Password)
+					.NotNull()
+					.WithMessage("Please enter a password.")
+					.Length(4, 16)
+					.WithMessage("Password must be between 4 and 16 characters.");
 
-			RuleFor(x => x.Email)
-				.NotNull()
-				.WithMessage("Please enter an email address.")
-				.Length(2, 100)
-				.WithMessage("Email must not exceed 100 characters.")
-				.EmailAddress()
-				.WithMessage("Please enter a valid email address.");
+				RuleFor(x => x.Email)
+					.NotNull()
+					.WithMessage("Please enter an email address.")
+					.Length(2, 100)
+					.WithMessage("Email must not exceed 100 characters.")
+					.EmailAddress()
+					.WithMessage("Please enter a valid email address.");
+			});
+
+			RuleSet("Login", () =>
+			{
+				RuleFor(x => x.Username)
+					.NotNull()
+					.WithMessage("Please enter a user name.")
+					.Length(2, 50)
+					.WithMessage("Username must be between 2 and 50 characters.");
+
+				RuleFor(x => x.Password)
+					.NotNull()
+					.WithMessage("Please enter a password.")
+					.Length(4, 16)
+					.WithMessage("Password must be between 4 and 16 characters.");	
+			});
 		}
 
 		#endregion

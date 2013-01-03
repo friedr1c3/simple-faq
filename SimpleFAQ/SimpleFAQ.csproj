@@ -147,10 +147,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="App_Data\simple-faq.mdf" />
-    <Content Include="App_Data\simple-faq_log.ldf">
-      <DependentUpon>simple-faq.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\css\modern-responsive.css" />
     <Content Include="Content\css\modern.css" />
     <Content Include="Content\css\other.css" />
@@ -203,6 +199,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Auth\Register.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Auth\Login.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

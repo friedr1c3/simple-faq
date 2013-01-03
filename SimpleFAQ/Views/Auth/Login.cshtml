@@ -1,13 +1,13 @@
 ﻿@inherits WebViewPage<User>
 @{
-	ViewBag.Title = "Register";
+	ViewBag.Title = "Login";
 }
-<h2>Register</h2>
+<h2>Login</h2>
 <div class="grid">
 	<div class="row">
 		<div class="span6">
 			@{
-				Html.BeginForm("register", "auth", FormMethod.Post);
+				Html.BeginForm("login", "auth", FormMethod.Post);
 			}
 				<h4>Username</h4>
 				@Html.ValidationMessageFor(x => x.Username)
@@ -15,22 +15,10 @@
 					@Html.TextBoxFor(x => x.Username, new { placeholder = "Enter a username" })
 					<button class="helper"></button>
 				</div>
-				<h4>Email</h4>
-				@Html.ValidationMessageFor(x => x.Email)
-				<div class="input-control text">
-					@Html.TextBoxFor(x => x.Email, new { placeholder = "Enter an email address" })
-					<button class="helper"></button>
-				</div>
 				<h4>Password</h4>
 				@Html.ValidationMessageFor(x => x.Password)
 				<div class="input-control text">
 					@Html.PasswordFor(x => x.Password, new { placeholder = "Enter a password" })
-					<button class="helper"></button>
-				</div>
-				<h4>Confirm Password</h4>
-				@Html.ValidationMessage("PasswordConfirm")
-				<div class="input-control text">
-					@Html.PasswordFor(x => x.PasswordConfirm, new { placeholder = "Re-enter a password" })
 					<button class="helper"></button>
 				</div>
 				<input type="submit" value="Submit" />
