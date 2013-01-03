@@ -26,6 +26,23 @@ namespace SimpleFAQ.Controllers
 		#region Public Methods
 
 		/// <summary>
+		/// Returns a generic message view.
+		/// </summary>
+		/// <param name="message"></param>
+		/// <param name="url"></param>
+		/// <returns></returns>
+		public ActionResult GenericMessage(string message, string url)
+		{
+			var gm = new GenericMessage()
+			{
+				Message = message,
+				URL = url
+			};
+
+			return View("GenericMessage", gm);
+		}
+
+		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="request"></param>

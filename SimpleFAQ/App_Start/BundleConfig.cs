@@ -21,7 +21,8 @@ namespace SimpleFAQ
 				"~/Content/javascript/tile-slider.js"));
 
 			bundles.Add(new StyleBundle("~/bundles/css").Include(
-				"~/Content/css/modern.css"));
+				"~/Content/css/modern.css",
+				"~/Content/css/other.css"));
 		}
 	}
 }

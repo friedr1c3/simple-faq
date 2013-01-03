@@ -604,8 +604,8 @@ License:	CC BY-SA 3.0 -- http://creativecommons.org/licenses/by-sa/3.0/
 */
 @font-face {
   font-family: 'iconFont';
-  src: url('../content/fonts/iconFont.eot');
-  src: url('../content/fonts/iconFont.eot?#iefix') format('embedded-opentype'), url('../content/fonts/iconFont.svg#iconFont') format('svg'), url('../content/fonts/iconFont.woff') format('woff'), url('../content/fonts/iconFont.ttf') format('truetype');
+  src: url('/content/fonts/iconFont.eot');
+  src: url('/content/fonts/iconFont.eot?#iefix') format('embedded-opentype'), url('/content/fonts/iconFont.svg#iconFont') format('svg'), url('/content/fonts/iconFont.woff') format('woff'), url('/content/fonts/iconFont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -2632,8 +2632,8 @@ ol.unstyled,
   display: block;
 }
 .page .page-region .page-region-content {
-  padding-top: 10px;
-  padding-left: 0;
+  padding-top:30px;
+  padding-left: 15px;
   padding-right: 0;
   padding-bottom: 20px;
   display: block;

@@ -1,4 +1,4 @@
-﻿using FluentValidation.Attributes
+﻿using FluentValidation.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +30,16 @@ namespace SimpleFAQ.Models
 		/// Gets or sets the password.
 		/// </summary>
 		public string Password { get; set; }
+
+		/// <summary>
+		/// Gets or sets the password confirm.
+		/// </summary>
+		public string PasswordConfirm { get; set; }
+
+		/// <summary>
+		/// Gets or sets the salt.
+		/// </summary>
+		public string Salt { get; set; }
 
 		/// <summary>
 		/// Gets or sets the email.

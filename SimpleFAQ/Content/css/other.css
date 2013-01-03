@@ -1,0 +1,14 @@
+﻿.error
+{
+	color: red;
+}
+
+span.field-validation-error
+{
+	color: red;
+}
+
+.input-validation-error
+{
+	border-color: red !important;
+}

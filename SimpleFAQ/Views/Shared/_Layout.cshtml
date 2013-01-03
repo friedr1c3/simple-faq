@@ -11,6 +11,17 @@
 				<div class="nav-bar-inner padding10">
 					<a href="@Url.Action("index", "home")"><span class="element brand">Knowledge Base</span></a>
 					<div class="divider"></div>
+					<ul class="menu">
+						<li>
+							<a href="@Url.Action("index", "home")">Home</a>
+						</li>
+						<li>
+							<a href="@Url.Action("login", "auth")">Login</a>
+						</li>
+						<li>
+							<a href="@Url.Action("register", "auth")">Register</a>
+						</li>
+					</ul>
 				</div>
 			</div>
 			<div class="page-region">
@@ -20,7 +31,7 @@
 			</div>
 			<div class="nav-bar">
 				<div class="nav-bar-inner padding10">
-					<span class="element">&copy; SimpleFAQ</span>
+					<span class="element"><a class="fg-color-white" href="http://github.com/friedr1c3/simple-faq">SimpleFAQ</a> is an open-source project.</span>
 				</div>
 			</div>
 		</div>

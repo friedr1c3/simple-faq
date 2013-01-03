@@ -1,0 +1,7 @@
+﻿@inherits WebViewPage<GenericMessage>
+@{
+    ViewBag.Title = "Message";
+}
+<h2>Message</h2>
+<p>@(this.Model.Message)</p>
+<p><a href="@(this.Model.URL)">Continue</a></p>

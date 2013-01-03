@@ -45,6 +45,9 @@
     <Reference Include="FluentValidation">
       <HintPath>..\packages\FluentValidation.3.4.6.0\lib\Net40\FluentValidation.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation.Mvc">
+      <HintPath>..\packages\FluentValidation.MVC3.3.4.6.0\lib\Net40\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -123,13 +126,16 @@
     <Compile Include="Core\Database\Dapper\Database.cs" />
     <Compile Include="Core\Database\Dapper\SqlMapper.cs" />
     <Compile Include="Core\Database\SimpleFAQDatabase.cs" />
+    <Compile Include="Core\Helpers\Encryption.cs" />
     <Compile Include="Core\Helpers\RouteAttribute.cs" />
+    <Compile Include="Core\Helpers\Utilities.cs" />
     <Compile Include="Core\Helpers\XSRFSafeAttribute.cs" />
     <Compile Include="Current.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\GenericMessage.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\Setting.cs" />
     <Compile Include="Models\User.cs" />
@@ -147,6 +153,7 @@
     </Content>
     <Content Include="Content\css\modern-responsive.css" />
     <Content Include="Content\css\modern.css" />
+    <Content Include="Content\css\other.css" />
     <Content Include="Content\css\theme-dark.css" />
     <Content Include="Content\fonts\iconFont.svg" />
     <Content Include="Content\fonts\license.txt" />
@@ -174,7 +181,9 @@
     </Content>
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\Shared\GenericMessage.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
@@ -191,6 +200,9 @@
     <Content Include="Content\fonts\iconFont.eot" />
     <Content Include="Content\fonts\iconFont.ttf" />
     <Content Include="Content\fonts\iconFont.woff" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Auth\Register.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

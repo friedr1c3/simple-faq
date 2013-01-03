@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
 namespace SimpleFAQ.Controllers
 {
+	using Core.Helpers;
 	using Models;
 
 	/// <summary>
@@ -70,7 +73,24 @@ namespace SimpleFAQ.Controllers
 		[HttpPost]
 		public ActionResult Register(User user)
 		{
-			return View();
+			if (this.ModelState.IsValid)
+			{
+				user.Salt = Utilities.RandomString(10);
+				user.Password = Encryption.ComputerHash(user.Password, new SHA256CryptoServiceProvider(), Encoding.UTF8.GetBytes(user.Salt));
+
+				return GenericMessage("You have successfully registered!", "/");
+			}
+
+			else
+			{
+				// Passwords do not match.
+				if (user.PasswordConfirm != user.Password)
+				{
+					ModelState.AddModelError("PasswordConfirm", "Confirmation password does not match original password.");
+				}
+
+				return View(user);
+			}
 		}
 
 		#endregion
