@@ -9,7 +9,7 @@ namespace SimpleFAQ.Controllers
 	/// <summary>
 	/// Home controller.
 	/// </summary>
-    public class HomeController : Controller
+    public class HomeController : BaseController
 	{
 		#region Index
 

@@ -114,10 +114,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Core\Database\Dapper\Database.cs" />
     <Compile Include="Core\Database\Dapper\SqlMapper.cs" />
     <Compile Include="Core\Database\SimpleFAQDatabase.cs" />
+    <Compile Include="Current.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
