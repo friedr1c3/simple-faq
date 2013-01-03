@@ -42,6 +42,16 @@ namespace SimpleFAQ.Models
 		/// </summary>
 		public DateTime Registered { get; set; }
 
+		/// <summary>
+		/// Gets or sets whether or not the current user is anonymous.
+		/// </summary>
+		public bool IsAnonymous { get; set; }
+
+		/// <summary>
+		/// Gets or sets the XSFR form value.
+		/// </summary>
+		public string XSRFFormValue { get; set; }
+
 		#endregion
 	}
 }

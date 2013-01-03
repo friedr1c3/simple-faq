@@ -51,6 +51,13 @@ namespace SimpleFAQ.Controllers
 
 		#region Private Methods
 
+		protected override void Initialize(System.Web.Routing.RequestContext requestContext)
+		{
+			Current.Controller = this;
+
+			base.Initialize(requestContext);
+		}
+
 		/// <summary>
 		/// Initializes the current user.
 		/// </summary>
