@@ -43,6 +43,15 @@ namespace SimpleFAQ.Controllers
 		}
 
 		/// <summary>
+		/// Not found (404) content result.
+		/// </summary>
+		/// <returns></returns>
+		public ContentResult NotFound()
+		{
+			return new ContentResult { Content = "404", ContentType = "text/plain" };
+		}
+
+		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="request"></param>
@@ -50,7 +59,7 @@ namespace SimpleFAQ.Controllers
 		/// <returns></returns>
 		public static User GetCurrentUser(HttpRequest request, string identity)
 		{
-			return GetCurrentUser(request.IsAuthenticated, identity);
+			return GetCurrentUser(request.IsAuthenticated, request.UserHostAddress, identity);
 		}
 
 		/// <summary>
@@ -61,7 +70,7 @@ namespace SimpleFAQ.Controllers
 		/// <returns></returns>
 		public static User GetCurrentUser(HttpRequestBase request, string identity)
 		{
-			return GetCurrentUser(request.IsAuthenticated, identity);
+			return GetCurrentUser(request.IsAuthenticated, request.UserHostAddress, identity);
 		}
 
 		#endregion
@@ -89,9 +98,10 @@ namespace SimpleFAQ.Controllers
 		/// <param name="isAuthenticated"></param>
 		/// <param name="identity"></param>
 		/// <returns></returns>
-		private static User GetCurrentUser(bool isAuthenticated, string identity)
+		private static User GetCurrentUser(bool isAuthenticated, string userIP, string identity)
 		{
 			var user = new User();
+			user.IsAnonymous = true;
 
 			if (isAuthenticated)
 			{
@@ -104,6 +114,7 @@ namespace SimpleFAQ.Controllers
 					if (lookup != null)
 					{
 						user = lookup;
+						user.IsAnonymous = false;
 					}
 				}
 
@@ -112,6 +123,8 @@ namespace SimpleFAQ.Controllers
 					FormsAuthentication.SignOut();
 				}
 			}
+
+			user.IPAddress = userIP;
 
 			return user;
 		}

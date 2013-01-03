@@ -23,12 +23,12 @@ Installation
 
 **Important**: These instructions are for future reference. This project is incomplete.
 
-1) Download the latest release (i.e published releases or source from **master**).
-2) Open Web.config and configure the SQL connection string (**DBConnection**). Do not change the connection string name!
-3) Open the **/db/** folder and execute all of the SQL scripts (excluding **install.sql**).
-4) Execute the **install** (install.sql) script.
-5) Login using the default admin account. Username: admin, Password: _9b27a_#8@ys92n
-6) Update the admin account. Change the password, email, etc.
+1. Download the latest release (i.e published releases or source from **master**).
+2. Open Web.config and configure the SQL connection string (**DBConnection**). Do not change the connection string name!
+3. Open the **/db/** folder and execute all of the SQL scripts (excluding **install.sql**).
+4. Execute the **install** (install.sql) script.
+5. Login using the default admin account. Username: admin, Password: _9b27a_#8@ys92n
+6. Update the admin account. Change the password, email, etc.
 
 License
 ============

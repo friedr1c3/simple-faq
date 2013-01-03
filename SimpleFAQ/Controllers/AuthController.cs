@@ -26,6 +26,11 @@ namespace SimpleFAQ.Controllers
 		/// <returns></returns>
 		public ActionResult Login()
 		{
+			if (!CurrentUser.IsAnonymous)
+			{
+				return RedirectToAction("index", "home");
+			}
+
 			return View();
 		}
 
@@ -54,7 +59,17 @@ namespace SimpleFAQ.Controllers
 						return View(user);
 					}
 
-					//var ticket = new FormsAuthenticationTicket(1, dbUser.ID.ToString(), DateTime.Now, DateTime.Now.AddYears(1), true, null);
+					// Create a forms auth ticket.
+					var ticket = new FormsAuthenticationTicket(1, dbUser.ID.ToString(), DateTime.Now, DateTime.Now.AddYears(1), true, "");
+
+					// Encrypt ticket.
+					string encryptedTicket = FormsAuthentication.Encrypt(ticket);
+
+					// Create a cookie.
+					var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+					cookie.Expires = ticket.Expiration;
+
+					Response.Cookies.Add(cookie);
 
 					return GenericMessage("You have successfully logged in!", "/");
 				}
@@ -96,6 +111,16 @@ namespace SimpleFAQ.Controllers
 		/// <returns></returns>
 		public ActionResult Register()
 		{
+			if (!CurrentUser.IsAnonymous)
+			{
+				return RedirectToAction("index", "home");
+			}
+
+			if (!AppSettings.RegistrationEnabled)
+			{
+				return GenericMessage("Registrations have been disabled.", "/");
+			}
+
 			return View();
 		}
 

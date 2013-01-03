@@ -119,10 +119,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSettings.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Core\Database\Dapper\Database.cs" />
     <Compile Include="Core\Database\Dapper\SqlMapper.cs" />
     <Compile Include="Core\Database\SimpleFAQDatabase.cs" />

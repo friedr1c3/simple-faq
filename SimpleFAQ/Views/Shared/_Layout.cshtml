@@ -15,12 +15,33 @@
 						<li>
 							<a href="@Url.Action("index", "home")">Home</a>
 						</li>
-						<li>
-							<a href="@Url.Action("login", "auth")">Login</a>
-						</li>
-						<li>
-							<a href="@Url.Action("register", "auth")">Register</a>
-						</li>
+						@if(Current.Controller.CurrentUser.IsAnonymous)
+						{
+							<li>
+								<a href="@Url.Action("login", "auth")">Login</a>
+							</li>
+							<li>
+								<a href="@Url.Action("register", "auth")">Register</a>
+							</li>
+						}
+						else
+						{
+							<li>
+								<a href="@Url.Action("profile", "user", new { Current.Controller.CurrentUser.ID })">Profile</a>
+							</li>
+							if(Current.Controller.CurrentUser.IsAdmin)
+							{
+								<li>
+									<a href="@Url.Action("","")">Add Question</a>
+								</li>
+								<li>
+									<a href="@Url.Action("", "")">Admin</a>
+								</li>
+							}
+							<li>
+								<a href="@Url.Action("logout", "auth")">Logout</a>
+							</li>
+						}
 					</ul>
 				</div>
 			</div>
