@@ -19,15 +19,15 @@ Dependencies
 
 Installation
 ============
-**Important**: I don't commit an SQL database with this project, so you'll need to create one yourself!
+**Important**: I don't commit an SQL database with this project, so you'll need to create one yourself and execute the SQL scripts.
 
 **Important**: These instructions are for future reference. This project is incomplete.
 
 1. Download the latest release (i.e published releases or source from **master**).
-2. Open Web.config and configure the SQL connection string (**DBConnection**). Do not change the connection string name!
-3. Open the **/db/** folder and execute all of the SQL scripts (excluding **install.sql**).
-4. Execute the **install** (install.sql) script.
-5. Login using the default admin account. Username: admin, Password: _9b27a_#8@ys92n
+2. Open Web.config file and configure the SQL connection string (**DBConnection**). Do not change the connection string name!
+3. Open the **/db/** folder and execute all of the SQL scripts (do not execute the **install** script).
+4. Once all of the tables have been set up, execute the **install** script. This will install default data such as the admin account and application settings.
+5. Log in using the default admin account. Username: admin, Password: admin
 6. Update the admin account. Change the password, email, etc.
 
 License

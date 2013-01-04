@@ -1,0 +1,48 @@
+﻿@inherits WebViewPage<User>
+@{
+    ViewBag.Title = "User";
+}
+
+<h2>@(this.Model.Username)</h2>
+@*<div class="grid">
+	<div class="row">
+		<div class="span10">
+			<ul class="listview">
+				<li>
+					<div class="icon">
+						<img />
+					</div>
+					<div class="data">
+						<h4>Questions</h4>
+						<p>@(this.Model.Questions)</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>*@
+@*<div class="clearfix">
+	<div class="tile">
+		<div class="brand">
+			What goes here?
+		</div>
+		<div class="tile-status">
+			<div class="badge bg-color-blue">
+				@(this.Model.Questions)
+			</div>
+		</div>
+	</div>
+</div>*@
+@if(!Current.Controller.CurrentUser.IsAnonymous && (Current.Controller.CurrentUser.ID == this.Model.ID || Current.Controller.CurrentUser.IsAdmin))
+{
+	<div class="button-set">
+		<a href="#"><button class="bg-color-blueLight"><i class="icon-pencil"></i> Edit Profile</button></a>
+		<a href="#"><button class="bg-color-red"><i class="icon-cancel-2"></i> Delete Profile</button></a>
+	</div>
+}
+<h4>Administrator</h4>
+<p>@(this.Model.IsAdmin ? "Yes" : "No")</p>
+<h4>Registered</h4>
+<p>@(this.Model.Registered.ToLongDateString())</p>
+<h4>Questions</h4>
+<p>@(this.Model.Questions)</p>

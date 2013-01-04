@@ -12,3 +12,12 @@ span.field-validation-error
 {
 	border-color: red !important;
 }
+
+hr
+{
+	height: 1px;
+	border: 0;
+	color: #EFEFEF;
+	background-color: #EFEFEF;
+	width: 100%;
+} 
