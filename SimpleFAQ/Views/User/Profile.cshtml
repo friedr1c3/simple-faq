@@ -37,7 +37,7 @@
 {
 	<div class="button-set">
 		<a href="#"><button class="bg-color-blueLight"><i class="icon-pencil"></i> Edit Profile</button></a>
-		<a href="#"><button class="bg-color-red"><i class="icon-cancel-2"></i> Delete Profile</button></a>
+		<a href="@Url.Action("delete", "user", new { id = this.Model.ID })"><button class="bg-color-red"><i class="icon-cancel-2"></i> Delete Profile</button></a>
 	</div>
 }
 <h4>Administrator</h4>

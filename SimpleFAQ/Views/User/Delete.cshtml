@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Delete Account";
+}
+
+<h2>Delete Profile</h2>
+@{
+	Html.BeginForm("delete", "user", new { id = ViewBag.UserID }, FormMethod.Post, null);
+}
+	<input type="submit" value="Confirm" />
+@{
+	Html.EndForm();
+}

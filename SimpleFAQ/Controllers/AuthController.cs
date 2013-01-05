@@ -71,7 +71,8 @@ namespace SimpleFAQ.Controllers
 
 					Response.Cookies.Add(cookie);
 
-					return GenericMessage("You have successfully logged in!", "/");
+					//return GenericMessage("You have successfully logged in!", "/");
+					return RedirectToAction("index", "home");
 				}
 
 				else
