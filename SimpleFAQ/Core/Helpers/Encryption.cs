@@ -28,7 +28,7 @@ namespace SimpleFAQ.Core.Helpers
 
 			byte[] hashedBytes = algorithm.ComputeHash(saltedInput);
 
-			return BitConverter.ToString(hashedBytes);
+			return BitConverter.ToString(hashedBytes).Replace("-", "");
 		}
 	}
 }

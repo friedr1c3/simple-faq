@@ -51,7 +51,7 @@ namespace SimpleFAQ.Controllers
 					// Encrypt password.
 					user.Password = Encryption.ComputerHash(user.Password, new SHA256CryptoServiceProvider(), Encoding.UTF8.GetBytes(dbUser.Salt));
 
-					// Compare passwords
+					// Compare passwords (invalid).
 					if (user.Password != dbUser.Password)
 					{
 						this.ModelState.AddModelError("Username", "Incorrect username or password. Try again.");
@@ -71,12 +71,13 @@ namespace SimpleFAQ.Controllers
 
 					Response.Cookies.Add(cookie);
 
-					//return GenericMessage("You have successfully logged in!", "/");
 					return RedirectToAction("index", "home");
 				}
 
 				else
 				{
+					this.ModelState.AddModelError("Username", "Incorrect username or password. Try again.");
+
 					return View();
 				}
 			}

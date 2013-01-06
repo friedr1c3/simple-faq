@@ -34,5 +34,36 @@ namespace SimpleFAQ.Controllers
 		}
 
 		#endregion
+
+		#region Settings
+
+		/// <summary>
+		/// GET: /admin/settings
+		/// </summary>
+		/// <returns></returns>
+		[HttpGet]
+		[Route("admin/settings")]
+		public ActionResult Settings()
+		{
+			return View();
+		}
+
+		#endregion
+
+		#region Refresh Settings
+
+		/// <summary>
+		/// GET: /admin/settings/refresh
+		/// </summary>
+		/// <returns></returns>
+		[Route("admin/settings/refresh")]
+		public ActionResult Refresh_Settings()
+		{
+			AppSettings.Refresh();
+
+			return GenericMessage("Application settings have been refreshed.", "/admin");
+		}
+
+		#endregion
 	}
 }

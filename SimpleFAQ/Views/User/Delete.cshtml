@@ -3,9 +3,11 @@
 }
 
 <h2>Delete Profile</h2>
+<p>Are you sure you wish to delete your profile? This action cannot be undone. All questions associated with this account will be deleted.</p>
 @{
 	Html.BeginForm("delete", "user", new { id = ViewBag.UserID }, FormMethod.Post, null);
 }
+	@*<a href="@Url.Action("profile", "user", new { id = ViewBag.UserID })"><button>Cancel</button></a>*@
 	<input type="submit" value="Confirm" />
 @{
 	Html.EndForm();

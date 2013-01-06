@@ -1,6 +1,6 @@
 ﻿@inherits WebViewPage<User>
 @{
-    ViewBag.Title = "User";
+    ViewBag.Title = this.Model.Username + "'s Profile";
 }
 
 <h2>@(this.Model.Username)</h2>
