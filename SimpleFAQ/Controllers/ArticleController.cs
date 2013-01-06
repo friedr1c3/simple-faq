@@ -21,10 +21,11 @@ namespace SimpleFAQ.Controllers
 		/// <param name="id"></param>
 		/// <param name="shortName"></param>
 		/// <returns></returns>
-		[Route("article/{shortName}")]
-		public ActionResult View(string shortName)
+		[Route("article/{id:INT}/{shortName}")]
+		public ActionResult View(int id, string shortName)
 		{
-			var question = Current.DB.Query<Question>("SELECT * FROM Questions WHERE ShortName = @ShortName", new { ShortName = shortName }).FirstOrDefault();
+			// Get question from database.
+			var question = Current.DB.Questions.Get(id);
 
 			// Question not found.
 			if (question == null)

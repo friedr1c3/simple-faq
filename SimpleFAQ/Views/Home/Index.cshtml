@@ -1,4 +1,26 @@
 ﻿@{
     ViewBag.Title = "Home";
 }
-<p>Hello world!</p>
+<h2>Home</h2>
+<div class="grid">
+	<div class="row">
+		<div class="span10">
+			@{
+				Html.BeginForm("login", "auth", FormMethod.Post);
+			}
+				<h4>Quick Search</h4>
+				<div class="input-control text">
+					@Html.TextBox("QuickSearch", null, new { placeholder = "Quickly search for a question ..." })
+					<button class="helper"></button>
+				</div>
+				<input type="submit" value="Search" style="visibility:hidden;" />
+			@{
+				Html.EndForm();
+			}
+		</div>
+	</div>
+</div>
+<h4>Recently Added Questions</h4>
+<p>List of recently added questions.</p>
+<h4>Popular Questions</h4>
+<p>List of recently asked questions.</p>
