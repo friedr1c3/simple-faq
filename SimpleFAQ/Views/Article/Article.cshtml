@@ -1,0 +1,7 @@
+﻿@inherits WebViewPage<Question>
+@{
+	bool edit = ViewBag.Edit;
+    ViewBag.Title = (edit ? "Edit" : "Add") + " Article";
+}
+
+<h2>@(edit ? "Edit" : "Add") Article</h2>

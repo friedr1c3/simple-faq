@@ -33,6 +33,11 @@ namespace SimpleFAQ.Models
 		public int OwnerUserID { get; set; }
 
 		/// <summary>
+		/// Gets or sets the short name.
+		/// </summary>
+		public string ShortName { get; set; }
+
+		/// <summary>
 		/// Gets or sets the time.
 		/// </summary>
 		public DateTime Time { get; set; }
@@ -41,6 +46,16 @@ namespace SimpleFAQ.Models
 		/// Gets or sets the view count.
 		/// </summary>
 		public int View { get; set; }
+
+		/// <summary>
+		/// Gets or sets the password.
+		/// </summary>
+		public string Password { get; set; }
+
+		/// <summary>
+		/// Gets or sets the password confirm.
+		/// </summary>
+		public string PasswordConfirm { get; set; }
 
 		#endregion
 	}
