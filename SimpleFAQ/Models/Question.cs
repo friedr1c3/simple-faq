@@ -1,13 +1,17 @@
-﻿using System;
+﻿using FluentValidation.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace SimpleFAQ.Models
 {
+	using Validators;
+
 	/// <summary>
 	/// Question.
 	/// </summary>
+	[Validator(typeof(QuestionValidator))]
 	public class Question
 	{
 		#region Properties

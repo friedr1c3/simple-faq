@@ -10,6 +10,7 @@ namespace SimpleFAQ.Controllers
 {
 	using Core.Helpers;
 	using Models;
+	using ViewModels;
 
 	/// <summary>
 	/// Article controller.
@@ -49,12 +50,92 @@ namespace SimpleFAQ.Controllers
 			string passwordKey = "Question:" + id;
 
 			// Question has a password and the session doesn't exist.
-			if (question.Password.HasValue() && Session[passwordKey] == null)
+			if (question.Password.HasValue())
 			{
-
+				if (Session[passwordKey] == null)
+				{
+					return RedirectToAction("password", new { id = id, shortName = shortName });
+				}
 			}
 
-			return View(question);
+			var vq = new ViewQuestion { Question = question, User = Current.DB.Users.Get(question.OwnerUserID) };
+
+			return View(vq);
+		}
+
+		#endregion
+
+		#region Password
+
+		/// <summary>
+		/// GET: /article/{id}/{shortName}/password
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="shortName"></param>
+		/// <returns></returns>
+		[HttpGet]
+		[Route("article/{id:INT}/{shortName}/password")]
+		public ActionResult Password(int id, string shortName)
+		{
+			// Get question from database.
+			var question = Current.DB.Questions.Get(id);
+
+			if (question == null)
+			{
+				return NotFound();
+			}
+
+			ViewBag.ID = id;
+			ViewBag.ShortName = shortName;
+
+			return View();
+		}
+
+		/// <summary>
+		/// POST: /article/{id}/{shortName}/password
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="shortName"></param>
+		/// <returns></returns>
+		[HttpPost]
+		[Route("article/{id:INT}/{shortName}/password")]
+		public ActionResult Password(FormCollection formCollection, int id, string shortName)
+		{
+			// Get question from database.
+			var question = Current.DB.Questions.Get(id);
+
+			if (question == null)
+			{
+				return NotFound();
+			}
+
+			ViewBag.ID = id;
+			ViewBag.ShortName = shortName;
+
+			var password = formCollection["Password"];
+
+			if (!password.HasValue())
+			{
+				this.ModelState.AddModelError("Password", "Incorrect password. Try again.");
+
+				return View();
+			}
+
+			password = Encryption.ComputerHash(password, new SHA256CryptoServiceProvider(), Encoding.UTF8.GetBytes(CANNED_SALT));
+
+			if (password != question.Password)
+			{
+				this.ModelState.AddModelError("Password", "Incorrect password. Try again.");
+
+				return View();
+			}
+
+			string passwordKey = "Question:" + id;
+
+			// Add password to session.
+			Session.Add(passwordKey, password);
+
+			return RedirectToAction("view", new { id = id, shortName = shortName });
 		}
 
 		#endregion
@@ -108,6 +189,11 @@ namespace SimpleFAQ.Controllers
 				// Insert question into database.
 				var id = Current.DB.Questions.Insert(new { question.Title, question.Answer, question.OwnerUserID, question.ShortName, question.Password });
 
+				// Increment question count for the current user.
+				this.CurrentUser.Questions = this.CurrentUser.Questions + 1;
+
+				Current.DB.Users.Update(this.CurrentUser.ID, new { this.CurrentUser.Questions });
+
 				return RedirectToAction("view", new { id = id, shortName = question.ShortName });
 			}
 
@@ -122,11 +208,12 @@ namespace SimpleFAQ.Controllers
 		#region Edit
 
 		/// <summary>
-		/// GET: /article/edit/{id}
+		/// GET: /article/{id}/{shortName}/edit
 		/// </summary>
 		/// <returns></returns>
 		[HttpGet]
-		public ActionResult Edit(int id)
+		[Route("article/{id:INT}/{shortName}/edit")]
+		public ActionResult Edit(int id, string shortName)
 		{
 			ViewBag.Edit = true;
 
@@ -147,21 +234,66 @@ namespace SimpleFAQ.Controllers
 		}
 
 		/// <summary>
-		/// POST: /article/edit
+		/// POST: /article/{id}/{shortName}/edit
 		/// </summary>
 		/// <param name="question"></param>
 		/// <returns></returns>
 		[HttpPost]
-		public ActionResult Edit(Question question)
+		[Route("article/{id:INT}/{shortName}/edit")]
+		public ActionResult Edit(int id, string shortName, Question question)
 		{
 			ViewBag.Edit = true;
 
-			// Password input null = do not update password.
-			// Password input string = update password.
-			// Remove password ticked = remove password (set to NULL).
+			// Get original question in former state from the database.
+			var dbQuestion = Current.DB.Questions.Get(id);
 
-			return View("Article");
+			if (this.ModelState.IsValid)
+			{
+				// A password is being assigned.
+				if (question.Password.HasValue())
+				{
+					// If passwords don't match.
+					if (question.PasswordConfirm != question.Password)
+					{
+						this.ModelState.AddModelError("Password", "Passwords do not match.");
+
+						return View("Article", question);
+					}
+
+					else
+					{
+						question.Password = Encryption.ComputerHash(question.Password, new SHA256CryptoServiceProvider(), Encoding.UTF8.GetBytes(CANNED_SALT));
+					}
+				}
+
+				else
+				{
+					question.Password = dbQuestion.Password;
+				}
+
+				// Remove password if the checkbox has been ticked.
+				if (question.RemovePassword)
+				{
+					question.Password = null;
+				}
+
+				question.ShortName = URLHelpers.ToURLFragment(question.Title, 100);
+
+				// Update
+				Current.DB.Questions.Update(id, new { question.Title, question.Answer, question.ShortName, question.Password });
+
+				return RedirectToAction("view", new { id = id, shortName = question.ShortName });
+			}
+
+			else
+			{
+				return View("Article");
+			}
 		}
+
+		#endregion
+
+		#region Delete
 
 		#endregion
 	}

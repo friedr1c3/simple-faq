@@ -18,10 +18,12 @@
 					<button class="helper"></button>
 				</div>
 				<h4>Answer</h4>
+				@Html.ValidationMessageFor(x => x.Answer)
 				<div class="input-control text">
-					@Html.TextAreaFor(x => x.Title, new { placeholder = "Enter an answer" })
+					@Html.TextAreaFor(x => x.Answer, new { placeholder = "Enter an answer" })
 				</div>
 				<h4>Password (optional)</h4>
+				@Html.ValidationMessageFor(x => x.Password)
 				<div class="input-control text">
 					@Html.PasswordFor(x => x.Password, new { placeholder = "Enter a password (optional)", autocomplete = "off" })
 					<button class="helper"></button>
@@ -34,11 +36,14 @@
 				@if(edit)
 				{
 					<h4>Remove Password</h4>
-					<label class="input-control checkbox">
-						@Html.CheckBoxFor(x => x.RemovePassword)
-						<span class="helper">Remove Password</span>
-					</label>
+					<div>
+						<label class="input-control checkbox">
+							@Html.CheckBoxFor(x => x.RemovePassword)
+							<span class="helper">Remove Password</span>
+						</label>
+					</div>
 				}
+				<input type="submit" value="Submit" />
 			@{
 				Html.EndForm();
 			}

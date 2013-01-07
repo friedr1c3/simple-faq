@@ -99,6 +99,7 @@ namespace SimpleFAQ.Controllers
 		public ActionResult Logout()
 		{
 			FormsAuthentication.SignOut();
+			Session.Abandon();
 
 			return RedirectToAction("index", "home");
 		}
