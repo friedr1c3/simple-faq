@@ -31,6 +31,14 @@
 					@Html.PasswordFor(x => x.PasswordConfirm, new { placeholder = "Enter the password again", autocomplete = "off" })
 					<button class="helper"></button>
 				</div>
+				@if(edit)
+				{
+					<h4>Remove Password</h4>
+					<label class="input-control checkbox">
+						@Html.CheckBoxFor(x => x.RemovePassword)
+						<span class="helper">Remove Password</span>
+					</label>
+				}
 			@{
 				Html.EndForm();
 			}

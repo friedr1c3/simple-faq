@@ -132,6 +132,7 @@
     <Compile Include="Core\Database\SimpleFAQDatabase.cs" />
     <Compile Include="Core\Helpers\Encryption.cs" />
     <Compile Include="Core\Helpers\RouteAttribute.cs" />
+    <Compile Include="Core\Helpers\URLHelpers.cs" />
     <Compile Include="Core\Helpers\Utilities.cs" />
     <Compile Include="Core\Helpers\XSRFSafeAttribute.cs" />
     <Compile Include="Current.cs" />
@@ -219,9 +220,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Admin\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Article\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Article\Article.cshtml" />

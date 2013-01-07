@@ -2,7 +2,7 @@
     ViewBag.Title = "Home";
 }
 <h2>Home</h2>
-<div class="grid">
+<div class="grid remove-margin">
 	<div class="row">
 		<div class="span10">
 			@{
@@ -13,7 +13,7 @@
 					@Html.TextBox("QuickSearch", null, new { placeholder = "Quickly search for a question ..." })
 					<button class="helper"></button>
 				</div>
-				<input type="submit" value="Search" style="visibility:hidden;" />
+				<input type="submit" value="Search" />
 			@{
 				Html.EndForm();
 			}

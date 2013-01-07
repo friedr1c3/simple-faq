@@ -57,6 +57,11 @@ namespace SimpleFAQ.Models
 		/// </summary>
 		public string PasswordConfirm { get; set; }
 
+		/// <summary>
+		/// Gets or sets the remove password.
+		/// </summary>
+		public bool RemovePassword { get; set; }
+
 		#endregion
 	}
 }
