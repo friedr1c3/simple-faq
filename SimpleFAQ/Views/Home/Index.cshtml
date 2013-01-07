@@ -21,6 +21,11 @@
 	</div>
 </div>
 <h4>Recently Added Questions</h4>
-<p>List of recently added questions.</p>
+<p>
+	@foreach(var q in (IEnumerable<Question>)ViewBag.RecentQuestions)
+	{
+		@Html.ActionLink(q.Title, "view", "article", new { id = q.ID, shortName = q.ShortName}, null)<br />
+	}
+</p>
 <h4>Popular Questions</h4>
 <p>List of recently asked questions.</p>

@@ -49,7 +49,7 @@ namespace SimpleFAQ.Models
 		/// <summary>
 		/// Gets or sets the view count.
 		/// </summary>
-		public int View { get; set; }
+		public int Views { get; set; }
 
 		/// <summary>
 		/// Gets or sets the password.

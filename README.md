@@ -6,15 +6,17 @@ Simple ASP.NET MVC 4 FAQ/KB.
 Features
 ============
 
-* User system. (N/A)
-* Add questions. (N/A)
-* View questions. (N/A)
+* Administration (manage questions, users, application settings).
+* User system (register, forms authentication, profiles).
+* Add questions (add, edit, delete, password protection, Markdown formatting).
+* View questions (formatted Markdown answers, password proection).
 * Search for questions. (N/A)
 
 Dependencies
 ============
 * See **/packages/** folder for NuGet packages.
 * Some components and portions of code taken from [SEDE](http://code.google.com/p/stack-exchange-data-explorer/).
+* [MarkdownSharp](http://code.google.com/p/markdownsharp/).
 * Metro UI by [metroui.org.ua](http://metroui.org.ua).
 
 Installation

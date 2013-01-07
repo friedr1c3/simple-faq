@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MarkdownSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -57,6 +58,16 @@ namespace SimpleFAQ.Controllers
 					return RedirectToAction("password", new { id = id, shortName = shortName });
 				}
 			}
+
+			// Increment view count for question.
+			question.Views = question.Views + 1;
+
+			// Update question.
+			Current.DB.Questions.Update(id, new { question.Views });
+
+			var md = new Markdown();
+
+			question.Answer = md.Transform(question.Answer);
 
 			var vq = new ViewQuestion { Question = question, User = Current.DB.Users.Get(question.OwnerUserID) };
 
@@ -294,6 +305,33 @@ namespace SimpleFAQ.Controllers
 		#endregion
 
 		#region Delete
+
+		/// <summary>
+		/// GET: /article/{id}/{shortName}/delete
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="shortName"></param>
+		/// <returns></returns>
+		[HttpGet]
+		[Route("article/{id:INT}/{shortName}/delete")]
+		public ActionResult Delete(int id, string shortName)
+		{
+			return View();
+		}
+
+		/// <summary>
+		/// POST: article/{id}/{shortName}/delete
+		/// </summary>
+		/// <param name="formCollection"></param>
+		/// <param name="id"></param>
+		/// <param name="shortName"></param>
+		/// <returns></returns>
+		[HttpPost]
+		[Route("article/{id:INT}/{shortName}/delete")]
+		public ActionResult Delete(FormCollection formCollection, int id, string shortName)
+		{
+			return GenericMessage("Article has been successfully deleted.", "/");
+		}
 
 		#endregion
 	}

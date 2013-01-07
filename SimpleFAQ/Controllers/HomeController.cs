@@ -6,6 +6,8 @@ using System.Web.Mvc;
 
 namespace SimpleFAQ.Controllers
 {
+	using Models;
+
 	/// <summary>
 	/// Home controller.
 	/// </summary>
@@ -21,6 +23,8 @@ namespace SimpleFAQ.Controllers
 		/// <returns></returns>
 		public ActionResult Index()
         {
+			ViewBag.RecentQuestions = Current.DB.QueryMultiple("SELECT TOP 5 ID, Title, ShortName FROM Questions ORDER BY Time DESC").Read<Question>();
+
             return View();
 		}
 

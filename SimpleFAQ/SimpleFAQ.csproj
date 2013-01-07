@@ -135,6 +135,7 @@
     <Compile Include="Core\Helpers\URLHelpers.cs" />
     <Compile Include="Core\Helpers\Utilities.cs" />
     <Compile Include="Core\Helpers\XSRFSafeAttribute.cs" />
+    <Compile Include="Core\Markdown.cs" />
     <Compile Include="Current.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="Global.asax.cs">
