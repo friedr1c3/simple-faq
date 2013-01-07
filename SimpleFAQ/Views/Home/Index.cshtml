@@ -6,11 +6,11 @@
 	<div class="row">
 		<div class="span10">
 			@{
-				Html.BeginForm("login", "auth", FormMethod.Post);
+				Html.BeginForm("index", "search", FormMethod.Get);
 			}
 				<h4>Quick Search</h4>
 				<div class="input-control text">
-					@Html.TextBox("QuickSearch", null, new { placeholder = "Quickly search for a question ..." })
+					@Html.TextBox("input", null, new { placeholder = "Quickly search for a question ..." })
 					<button class="helper"></button>
 				</div>
 				<input type="submit" value="Search" />

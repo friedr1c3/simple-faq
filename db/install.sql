@@ -12,3 +12,5 @@ INSERT INTO Users (Username, Password, Salt, Email, IsAdmin) VALUES('admin', '64
 -- Default settings
 INSERT INTO Settings(Name, Value) VALUES ('SiteName', 'Simple FAQ')
 INSERT INTO Settings(Name, Value) VALUES ('RegistrationEnabled', 'true')
+INSERT INTO Settings(Name, Value) VALUES ('MaxRecentQuestions', '10')
+INSERT INTO Settings(Name, Value) VALUES ('MaxPopularQuestions', '10')
