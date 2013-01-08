@@ -10,7 +10,7 @@ Features
 * User system (register, forms authentication, profiles).
 * Add questions (add, edit, delete, password protection, Markdown formatting).
 * View questions (formatted Markdown answers, password proection).
-* Search for questions. (N/A)
+* Question/article search.
 
 Dependencies
 ============

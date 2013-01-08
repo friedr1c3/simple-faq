@@ -4,3 +4,17 @@
 }
 
 <h2>Search for '@(ViewBag.Input)'</h2>
+<div class="grid">
+	@foreach(var q in this.Model)
+	{
+		<div class="row">
+			<a href="@Url.Action("view", "question", new { id = q.ID, shortName = q.ShortName })"><h4>@(q.Title)</h4></a>
+			<p>@(q.Time.ToLongDateString())</p>
+		</div>
+		<hr />
+	}
+	<div class="row">
+		@UIHelper.PageSizer(ViewData["Href"] + "pagesize=-1", this.Model.PageIndex, this.Model.PageSize, this.Model.PageCount, "")<br />
+		@UIHelper.PageNumber(ViewData["Href"] + "page=-1&pagesize=" + this.Model.PageSize, this.Model, "")
+	</div>
+</div>
