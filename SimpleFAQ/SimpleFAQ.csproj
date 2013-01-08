@@ -129,10 +129,15 @@
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Core\Database\Dapper\Database.cs" />
+    <Compile Include="Core\Database\Dapper\SqlBuilder.cs" />
     <Compile Include="Core\Database\Dapper\SqlMapper.cs" />
     <Compile Include="Core\Database\SimpleFAQDatabase.cs" />
     <Compile Include="Core\Helpers\Encryption.cs" />
+    <Compile Include="Core\Helpers\PagedList.cs" />
+    <Compile Include="Core\Helpers\PageNumber.cs" />
+    <Compile Include="Core\Helpers\PageSizer.cs" />
     <Compile Include="Core\Helpers\RouteAttribute.cs" />
+    <Compile Include="Core\Helpers\UIHelpers.cs" />
     <Compile Include="Core\Helpers\URLHelpers.cs" />
     <Compile Include="Core\Helpers\Utilities.cs" />
     <Compile Include="Core\Helpers\XSRFSafeAttribute.cs" />
