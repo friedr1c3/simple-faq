@@ -171,6 +171,7 @@ namespace SimpleFAQ.Controllers
 		/// <param name="question"></param>
 		/// <returns></returns>
 		[HttpPost]
+		[ValidateInput(false)]
 		public ActionResult Add(Question question)
 		{
 			ViewBag.Edit = false;
@@ -250,6 +251,7 @@ namespace SimpleFAQ.Controllers
 		/// <param name="question"></param>
 		/// <returns></returns>
 		[HttpPost]
+		[ValidateInput(false)]
 		[Route("article/{id:INT}/{shortName}/edit")]
 		public ActionResult Edit(int id, string shortName, Question question)
 		{

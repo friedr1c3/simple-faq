@@ -10,6 +10,4 @@
 		<a href="@Url.Action("edit", "article", new { id = this.Model.Question.ID, shortName = this.Model.Question.ShortName })"><button class="bg-color-blueLight"><i class="icon-pencil"></i> Edit</button></a>
 	</div>
 }
-<p>
-	@Html.Raw(this.Model.Question.Answer)
-</p>
+@Html.Raw(HtmlUtilities.Sanitize(this.Model.Question.Answer))

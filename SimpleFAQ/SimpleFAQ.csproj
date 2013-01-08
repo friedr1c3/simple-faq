@@ -133,6 +133,7 @@
     <Compile Include="Core\Database\Dapper\SqlMapper.cs" />
     <Compile Include="Core\Database\SimpleFAQDatabase.cs" />
     <Compile Include="Core\Helpers\Encryption.cs" />
+    <Compile Include="Core\Helpers\HtmlUtilities.cs" />
     <Compile Include="Core\Helpers\PagedList.cs" />
     <Compile Include="Core\Helpers\PageNumber.cs" />
     <Compile Include="Core\Helpers\PageSizer.cs" />
@@ -242,6 +243,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\User\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\Settings.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

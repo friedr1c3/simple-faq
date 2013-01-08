@@ -136,6 +136,25 @@ namespace SimpleFAQ.Controllers
 		{
 			if (this.ModelState.IsValid)
 			{
+				var checkUsername = Current.DB.Query<User>("SELECT Username FROM Users WHERE Username = @Username", new { Username = user.Username }).FirstOrDefault();
+				var checkEmail = Current.DB.Query<User>("SELECT Email FROM Users WHERE Email = @Email", new { Email = user.Email }).FirstOrDefault();
+
+				// Username taken.
+				if (checkUsername != null)
+				{
+					this.ModelState.AddModelError("Username", "User name has already been registered.");
+
+					return View(user);
+				}
+
+				// Email in use.
+				if (checkEmail != null)
+				{
+					this.ModelState.AddModelError("Email", "Email address has already been registered.");
+
+					return View(user);
+				}
+
 				user.Salt = Utilities.RandomString(10);
 				user.Password = Encryption.ComputerHash(user.Password, new SHA256CryptoServiceProvider(), Encoding.UTF8.GetBytes(user.Salt));
 				user.IPAddress = this.HttpContext.Request.UserHostAddress;

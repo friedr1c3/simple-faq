@@ -12,25 +12,25 @@
 				<h4>Username</h4>
 				@Html.ValidationMessageFor(x => x.Username)
 				<div class="input-control text">
-					@Html.TextBoxFor(x => x.Username, new { placeholder = "Enter a username" })
+					@Html.TextBoxFor(x => x.Username, new { placeholder = "Enter a username", autocomplete = "off" })
 					<button class="helper"></button>
 				</div>
 				<h4>Email</h4>
 				@Html.ValidationMessageFor(x => x.Email)
 				<div class="input-control text">
-					@Html.TextBoxFor(x => x.Email, new { placeholder = "Enter an email address" })
+					@Html.TextBoxFor(x => x.Email, new { placeholder = "Enter an email address", autocomplete = "off" })
 					<button class="helper"></button>
 				</div>
 				<h4>Password</h4>
 				@Html.ValidationMessageFor(x => x.Password)
 				<div class="input-control text">
-					@Html.PasswordFor(x => x.Password, new { placeholder = "Enter a password" })
+					@Html.PasswordFor(x => x.Password, new { placeholder = "Enter a password", autocomplete = "off" })
 					<button class="helper"></button>
 				</div>
 				<h4>Confirm Password</h4>
 				@Html.ValidationMessage("PasswordConfirm")
 				<div class="input-control text">
-					@Html.PasswordFor(x => x.PasswordConfirm, new { placeholder = "Re-enter a password" })
+					@Html.PasswordFor(x => x.PasswordConfirm, new { placeholder = "Re-enter a password", autocomplete = "off" })
 					<button class="helper"></button>
 				</div>
 				<input type="submit" value="Submit" />
