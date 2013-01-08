@@ -8,8 +8,8 @@ Features
 
 * Administration (manage questions, users, application settings).
 * User system (register, forms authentication, profiles).
-* Add questions (add, edit, delete, password protection, Markdown formatting).
-* View questions (formatted Markdown answers, password proection).
+* Add questions (add, edit, delete, password protection, Markdown formatting, safe and sanitized HTML input).
+* View questions (formatted Markdown answers, password protection).
 * Question/article search.
 
 Dependencies
@@ -25,9 +25,9 @@ Installation
 
 **Important**: These instructions are for future reference. This project is incomplete.
 
-1. Download the latest release (i.e published releases or source from **master**).
+1. Download the latest source and compile. SimpleFAQ should compile right out of the box.
 2. Open Web.config file and configure the SQL connection string (**DBConnection**). Do not change the connection string name!
-3. Open the **/db/** folder and execute all of the SQL scripts (do not execute the **install** script).
+3. Open the **db/** folder and execute all of the SQL scripts (do not execute the **install** script).
 4. Once all of the tables have been set up, execute the **install** script. This will install default data such as the admin account and application settings.
 5. Log in using the default admin account. Username: admin, Password: admin
 6. Update the admin account. Change the password, email, etc.
