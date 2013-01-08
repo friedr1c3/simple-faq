@@ -7,7 +7,7 @@
 @{
 	Html.BeginForm("delete", "user", new { id = ViewBag.UserID }, FormMethod.Post, null);
 }
-	@*<a href="@Url.Action("profile", "user", new { id = ViewBag.UserID })"><button>Cancel</button></a>*@
+	<a class="button" href="@Url.Action("profile", "user", new { id = ViewBag.UserID })">Cancel</a>
 	<input type="submit" value="Confirm" />
 @{
 	Html.EndForm();

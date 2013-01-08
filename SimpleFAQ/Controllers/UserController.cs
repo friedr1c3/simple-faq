@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using FluentValidation.Mvc;
 
 namespace SimpleFAQ.Controllers
 {
@@ -37,6 +38,47 @@ namespace SimpleFAQ.Controllers
 
 		#endregion
 
+		#region Edit
+
+		/// <summary>
+		/// GET: /user/{id}/edit
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		[HttpGet]
+		[Route("user/{id:INT}/edit")]
+		public ActionResult Edit(int id)
+		{
+			// Anonymous, not an admin or not the current user.
+			if (this.CurrentUser.IsAnonymous || !this.CurrentUser.IsAdmin || (this.CurrentUser.ID != id))
+			{
+				return RedirectToAction("profile", new { id = id });
+			}
+
+			return View();
+		}
+
+		/// <summary>
+		/// POST: /user/{id}/edit
+		/// </summary>
+		/// <param name="user"></param>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		[HttpPost]
+		[Route("user/{id:INT}/edit")]
+		public ActionResult Edit([CustomizeValidator(RuleSet = "Edit")]User user, int id)
+		{
+			// Anonymous, not an admin or not the current user.
+			if (this.CurrentUser.IsAnonymous || !this.CurrentUser.IsAdmin || (this.CurrentUser.ID != id))
+			{
+				return RedirectToAction("profile", new { id = id });
+			}
+
+			return GenericMessage("Profile successfully updated.", "/user/" + id);
+		}
+
+		#endregion
+
 		#region Delete
 
 		/// <summary>
@@ -50,6 +92,12 @@ namespace SimpleFAQ.Controllers
 		{
 			ViewBag.UserID = id;
 
+			// Anonymous, not an admin or not the current user.
+			if (this.CurrentUser.IsAnonymous || !this.CurrentUser.IsAdmin || (this.CurrentUser.ID != id))
+			{
+				return RedirectToAction("profile", new { id = id });
+			}
+
 			return View();
 		}
 
@@ -62,6 +110,12 @@ namespace SimpleFAQ.Controllers
 		[Route("user/{id:INT}/delete")]
 		public ActionResult Delete(int id, FormCollection formCollection)
 		{
+			// Anonymous, not an admin or not the current user.
+			if (this.CurrentUser.IsAnonymous || !this.CurrentUser.IsAdmin || (this.CurrentUser.ID != id))
+			{
+				return RedirectToAction("profile", new { id = id });
+			}
+
 			// Logout current user if they're deleting their own account.
 			if (id == this.CurrentUser.ID)
 			{
@@ -73,6 +127,7 @@ namespace SimpleFAQ.Controllers
 			Current.DB.Users.Delete(id);
 
 			// Delete questions.
+			Current.DB.Query("DELETE FROM Questions WHERE OwnerUserID = @OwnerId", new { OwnerId = id });
 
 			return GenericMessage("User profile has successfully been deleted. This action cannot be undone.", "/");
 		}

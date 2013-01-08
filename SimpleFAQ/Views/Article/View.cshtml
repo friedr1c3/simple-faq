@@ -3,7 +3,7 @@
     ViewBag.Title = this.Model.Question.Title;
 }
 <h2>@(this.Model.Question.Title)</h2>
-<h4>@(this.Model.Question.Time.ToLongDateString())</h4>
+<p>by <a href="@Url.Action("profile", "user", new { id = this.Model.User.ID })">@(this.Model.User.Username)</a> on @(this.Model.Question.Time.ToLongDateString())</p>
 @if(!Current.Controller.CurrentUser.IsAnonymous && (Current.Controller.CurrentUser.ID == this.Model.Question.OwnerUserID || Current.Controller.CurrentUser.IsAdmin))
 {
 	<div class="button-set">

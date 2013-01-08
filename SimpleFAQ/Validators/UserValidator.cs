@@ -54,6 +54,22 @@ namespace SimpleFAQ.Validators
 					.Length(4, 16)
 					.WithMessage("Password must be between 4 and 16 characters.");	
 			});
+
+			RuleSet("Edit", () =>
+			{
+				// Optional change when editing profile.
+				RuleFor(x => x.Password)
+					.Length(0, 16)
+					.WithMessage("Password must be between 4 and 16 characters");
+
+				RuleFor(x => x.Email)
+					.NotNull()
+					.WithMessage("Please enter an email address.")
+					.Length(2, 100)
+					.WithMessage("Email must not exceed 100 characters.")
+					.EmailAddress()
+					.WithMessage("Please enter a valid email address.");
+			});
 		}
 
 		#endregion
