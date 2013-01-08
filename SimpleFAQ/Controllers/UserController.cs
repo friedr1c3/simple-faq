@@ -1,12 +1,15 @@
-﻿using System;
+﻿using FluentValidation.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using FluentValidation.Mvc;
 
 namespace SimpleFAQ.Controllers
 {
+	using Core.Helpers;
 	using Models;
 
 	/// <summary>
@@ -55,7 +58,17 @@ namespace SimpleFAQ.Controllers
 				return RedirectToAction("profile", new { id = id });
 			}
 
-			return View();
+			var user = Current.DB.Users.Get(id);
+
+			if (user == null)
+			{
+				return NotFound();
+			}
+
+			user.Password = String.Empty;
+			user.PasswordConfirm = String.Empty;
+
+			return View(user);
 		}
 
 		/// <summary>
@@ -74,7 +87,44 @@ namespace SimpleFAQ.Controllers
 				return RedirectToAction("profile", new { id = id });
 			}
 
-			return GenericMessage("Profile successfully updated.", "/user/" + id);
+			if (this.ModelState.IsValid)
+			{
+				var dbUser = Current.DB.Users.Get(id);
+
+				// User is changing their password.
+				if (user.Password.HasValue())
+				{
+					// Passwords do not match.
+					if (user.PasswordConfirm != user.Password)
+					{
+						this.ModelState.AddModelError("Password", "Passwords do not match.");
+
+						return View(user);
+					}
+
+					// Generate new salt for this password.
+					user.Salt = Utilities.RandomString();
+
+					// Encrypt password.
+					user.Password = Encryption.ComputerHash(user.Password, new SHA256CryptoServiceProvider(), Encoding.UTF8.GetBytes(user.Salt));
+				}
+
+				else
+				{
+					// Don't change salt if the user is not changing their password.
+					user.Salt = dbUser.Salt;
+				}
+
+				// Update user information.
+				Current.DB.Users.Update(id, new { user.Email, user.Password, user.Salt });
+
+				return GenericMessage("Profile successfully updated.", "/user/" + id);
+			}
+
+			else
+			{
+				return View(user);
+			}
 		}
 
 		#endregion

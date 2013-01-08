@@ -1,5 +1,36 @@
-﻿@{
+﻿@model User
+@{
     ViewBag.Title = "Edit Profile";
 }
 
 <h2>Edit Profile</h2>
+<div class="grid">
+	<div class="row">
+		<div class="span6">
+			@{
+				Html.BeginForm("edit", "user", FormMethod.Post);
+			}
+				<h4>Email</h4>
+				@Html.ValidationMessageFor(x => x.Email)
+				<div class="input-control text">
+					@Html.TextBoxFor(x => x.Email, new { placeholder = "Enter an email address" })
+					<button class="helper"></button>
+				</div>
+				<h4>Password (optional)</h4>
+				@Html.ValidationMessageFor(x => x.Password)
+				<div class="input-control text">
+					@Html.PasswordFor(x => x.Password, new { placeholder = "Enter a password (leave blank to prevent update)", autocomplete = "off" })
+					<button class="helper"></button>
+				</div>
+				<h4>Password Confirm</h4>
+				<div class="input-control text">
+					@Html.PasswordFor(x => x.PasswordConfirm, new { placeholder = "Enter your password again", autocomplete = "off" })
+					<button class="helper"></button>
+				</div>
+				<input type="submit" value="Submit" />
+			@{
+				Html.EndForm();
+			}
+		</div>
+	</div>
+</div>
