@@ -113,6 +113,9 @@ namespace SimpleFAQ.Controllers
 				{
 					// Don't change salt if the user is not changing their password.
 					user.Salt = dbUser.Salt;
+
+					// Don't change password.
+					user.Password = dbUser.Password;
 				}
 
 				// Update user information.
